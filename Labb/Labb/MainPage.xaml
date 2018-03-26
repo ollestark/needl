@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Labb"
+             x:Class="Labb.MainPage"
+             Title="needl">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Orientation="Vertical">
+            <Slider x:Name="slider" 
+                Maximum="20"
+                Value="10"
+                VerticalOptions="Center"
+                BackgroundColor="#e4b83e"
+                ValueChanged="Slider_ValueChanged"/>
+
+            <ActivityIndicator x:Name="loadingTextSpinner"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Margin="0, 30, 0, 0"/>
+        </StackLayout>
+
+        <ListView x:Name="listNews"
+                  HasUnevenRows="True"
+                  ItemSelected="OpenArticle"
+                  Grid.Row="1"
+                  Margin="0, -6, 0, 0">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <BoxView BackgroundColor="#edc13c " HeightRequest="10" />
+                            <StackLayout Grid.Row="0" Orientation="Horizontal" Spacing="0">
+                                <Label Text="{Binding OriginalSource}" TextColor="White" FontSize="Small" Margin="3, 0, 0, 0" />
+                                <Label Text="{Binding Date, StringFormat=', kl {0:HH:mm, yyyy-MM-dd}'}" TextColor="White" FontSize="Small" Margin="3, 0, 0, 0" />
+                            </StackLayout>
+                            <Label Grid.Row="1" Text="{Binding Title}" TextColor="Black" FontSize="Medium" Margin="5, 0, 5, 0" />
+                            <Label Grid.Row="2" Text="{Binding Description}" TextColor="DarkSlateGray" Margin="5, 0, 5, 0" />
+                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
